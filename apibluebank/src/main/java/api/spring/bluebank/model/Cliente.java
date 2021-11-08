@@ -9,22 +9,30 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
-
+/**
+ * 
+ * @author hanely
+ *cadastro de cliente
+ *listagem de cliente
+ *atualização de cliente
+ *deletar clientes
+ *historico de transações entre contas
+ */
 @Entity
-@Table(name="pessoa")
-public class Usuario {
+@Table(name="cliente")
+public class Cliente {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotNull
+	//@NotNull
 	private String nome;
 	
-	@NotNull
+	//@NotNull
 	private String sobrenome;
 	
-	@NotNull
+	//@NotNull
 	@Email
 	private String email;
 	
