@@ -2,6 +2,7 @@ package api.spring.bluebank.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+
 /**
  * 
  * @author hanely
@@ -26,26 +28,38 @@ public class Cliente {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	//@NotNull
+
+	@Column(name = "nome", nullable = false, length = 60)
 	private String nome;
 	
-	//@NotNull
+	@Column(name = "sobrenome", nullable = false, length = 60)
 	private String sobrenome;
 	
-	//@NotNull
+	@Column(name = "email", nullable = false, unique = true, length = 60)
 	@Email
 	private String email;
 	
-	private String endereco;
+	//@Column(name = "telefone", nullable = true, unique = true, length = 11)
+	private int telefone;
 	
+	//@Column(name = "dataNascimento", nullable = false)
 	private Date data_nascimento;
 	
 	//enum tipo pessoa
 	
-
+	
 	public Long getId() {
 		return id;
 	}
+
+	public int getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(int telefone) {
+		this.telefone = telefone;
+	}
+
 
 	public void setId(Long id) {
 		this.id = id;
@@ -75,13 +89,6 @@ public class Cliente {
 		this.email = email;
 	}
 
-	public String getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
-	}
 
 	public Date getData_nascimento() {
 		return data_nascimento;

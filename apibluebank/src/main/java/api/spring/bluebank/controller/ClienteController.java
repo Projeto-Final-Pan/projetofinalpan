@@ -22,9 +22,24 @@ import api.spring.bluebank.repository.ClienteRepository;
 
 /**
  * 
- * @author hanely cadastro de cliente ok listagem de cliente ok atualização de
- *         cliente ok deletar clientes ok historico de transações entre contas
+<<<<<<< HEAD
+ * @author hanely 
+ * cadastro de cliente ok 
+ * listagem de cliente ok 
+ * atualização de cliente ok 
+ * deletar clientes ok 
+ * historico de transações entre contas
+ * 
+ * não deletar se houver saldo
+ * limite de pagamento ou transferencia pix
+ * validar cpf na hora de cadastrar (regex) api da receita
+ * validar idade
+ * validar cep -  api
+ * criar metodo deposito
+ * criar metodo de saque
+ * criar metodo de transferencia
  */
+
 
 @RestController
 @RequestMapping("/cliente")
@@ -49,7 +64,7 @@ public class ClienteController {
 
 	}
 
-	@PutMapping("/id/{id}/atualizar")
+	@PutMapping("/id/{id}")
 	public Optional<Cliente> alterarEmail(@PathVariable(value = "id") Long id,
 			@RequestBody Cliente clienteParaAtualizar) {
 		return cRepository.findById(id).map(emailExistente -> {
