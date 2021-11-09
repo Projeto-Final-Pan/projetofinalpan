@@ -47,8 +47,6 @@ public class Conta {
 	}
 
 
-
-
 	public double getSaldo() {
 		return saldo;
 	}
