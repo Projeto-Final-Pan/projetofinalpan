@@ -11,6 +11,9 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.UniqueElements;
+import org.hibernate.validator.constraints.br.CPF;
+
 /**
  * 
  * @author hanely
@@ -39,6 +42,19 @@ public class Cliente {
 	@Email
 	private String email;
 	
+	@CPF//(message = "Cpf Invalido")
+	//@UniqueElements
+	@Column(unique = true, nullable = false)
+	private String cpf;
+	
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
 	//@Column(name = "telefone", nullable = true, unique = true, length = 11)
 	private int telefone;
 	
