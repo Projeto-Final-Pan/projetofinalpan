@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
-
 import org.hibernate.validator.constraints.UniqueElements;
 import org.hibernate.validator.constraints.br.CPF;
 
@@ -58,8 +57,14 @@ public class Cliente {
 	//@Column(name = "telefone", nullable = true, unique = true, length = 11)
 	private int telefone;
 	
+
+	//@Column(name = "telefone", nullable = true, unique = true, length = 11)
+	private int telefone;
+	
 	//@Column(name = "dataNascimento", nullable = false)
 	private Date data_nascimento;
+	
+	private String senha;
 	
 	//enum tipo pessoa
 	
@@ -112,6 +117,14 @@ public class Cliente {
 
 	public void setData_nascimento(Date data_nascimento) {
 		this.data_nascimento = data_nascimento;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 	
 	

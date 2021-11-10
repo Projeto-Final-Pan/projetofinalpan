@@ -3,8 +3,6 @@ package api.spring.bluebank.controller;
 import java.util.List;
 import java.util.Optional;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -19,10 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import api.spring.bluebank.model.Cliente;
 import api.spring.bluebank.repository.ClienteRepository;
+import api.spring.bluebank.service.ClienteService;
 
 /**
  * 
-<<<<<<< HEAD
  * @author hanely 
  * cadastro de cliente ok 
  * listagem de cliente ok 
@@ -38,7 +36,7 @@ import api.spring.bluebank.repository.ClienteRepository;
  * criar metodo deposito
  * criar metodo de saque
  * criar metodo de transferencia
- */
+
 
 
 @RestController
@@ -46,39 +44,32 @@ import api.spring.bluebank.repository.ClienteRepository;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ClienteController {
 	@Autowired
-	private ClienteRepository cRepository;
+	private ClienteRepository repository;
+
+	@Autowired
+	private ClienteService service;
 
 	@GetMapping
 	public ResponseEntity<List<Cliente>> buscarTodos() {
-		return ResponseEntity.ok(cRepository.findAll());
+		return ResponseEntity.ok(repository.findAll());
 	}
 
 	@PostMapping("/cadastrar")
 	public ResponseEntity<Cliente> cadastrarCliente(@RequestBody Cliente novocliente) {
-		List<Cliente> clienteExistente = cRepository.findAllById(novocliente.getId());
-		List<Cliente> validarCPF = cRepository.findCPF(novocliente.getCpf());
-		if (clienteExistente.isEmpty() && validarCPF.isEmpty()) {
-			return ResponseEntity.status(201).body(cRepository.save(novocliente));
-		} else {
-			return ResponseEntity.badRequest().build();
-		}
+		return service.cadastrarCliente(novocliente);
+
 
 	}
 
 	@PutMapping("/id/{id}")
 	public Optional<Cliente> alterarEmail(@PathVariable(value = "id") Long id,
 			@RequestBody Cliente clienteParaAtualizar) {
-		return cRepository.findById(id).map(emailExistente -> {
-			emailExistente.setEmail(clienteParaAtualizar.getEmail());
-			return Optional.ofNullable(cRepository.save(emailExistente));
-		}).orElseGet(() -> {
-			return Optional.empty();
-		});
+		return service.alterarEmail(id, clienteParaAtualizar);
 
 	}
 
 	@DeleteMapping("/id/{id}")
 	public void deletar(@PathVariable Long id) {
-		cRepository.deleteById(id);
+		repository.deleteById(id);
 	}
 }
