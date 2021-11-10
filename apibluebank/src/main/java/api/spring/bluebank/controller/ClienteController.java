@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import api.spring.bluebank.model.Cliente;
 import api.spring.bluebank.repository.ClienteRepository;
 
-/**
+/*
  * 
 <<<<<<< HEAD
  * @author hanely 
@@ -43,7 +43,7 @@ import api.spring.bluebank.repository.ClienteRepository;
 
 @RestController
 @RequestMapping("/cliente")
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+//@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ClienteController {
 	@Autowired
 	private ClienteRepository cRepository;
@@ -56,7 +56,8 @@ public class ClienteController {
 	@PostMapping("/cadastrar")
 	public ResponseEntity<Cliente> cadastrarCliente(@RequestBody Cliente novocliente) {
 		List<Cliente> clienteExistente = cRepository.findAllById(novocliente.getId());
-		if (clienteExistente.isEmpty()) {
+		List<Cliente> validaCPF = cRepository.findByCpf(novocliente.getCpf());
+		if (clienteExistente.isEmpty() && validaCPF.isEmpty()) {
 			return ResponseEntity.status(201).body(cRepository.save(novocliente));
 		} else {
 			return ResponseEntity.badRequest().build();

@@ -11,6 +11,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.br.CPF;
+
 /**
  * 
  * @author hanely
@@ -28,7 +30,6 @@ public class Cliente {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-
 	@Column(name = "nome", nullable = false, length = 60)
 	private String nome;
 	
@@ -45,9 +46,21 @@ public class Cliente {
 	//@Column(name = "dataNascimento", nullable = false)
 	private Date data_nascimento;
 	
+	@CPF(message = "Cpf Invalido")
+	@Column(unique=true, nullable = false )
+	private String cpf;
+	
 	//enum tipo pessoa
 	
 	
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
 	public Long getId() {
 		return id;
 	}
