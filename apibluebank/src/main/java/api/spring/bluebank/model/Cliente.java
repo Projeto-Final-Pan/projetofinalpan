@@ -45,6 +45,8 @@ public class Cliente {
 	//@Column(name = "dataNascimento", nullable = false)
 	private Date data_nascimento;
 	
+	private String senha;
+	
 	//enum tipo pessoa
 	
 	
@@ -96,6 +98,14 @@ public class Cliente {
 
 	public void setData_nascimento(Date data_nascimento) {
 		this.data_nascimento = data_nascimento;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 	
 	

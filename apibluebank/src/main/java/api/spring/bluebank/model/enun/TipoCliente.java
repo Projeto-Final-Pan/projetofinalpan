@@ -1,4 +1,4 @@
-package api.spring.bluebank.model;
+package api.spring.bluebank.model.enun;
 
 public enum TipoCliente {
 	PESSOAFISICA(1, "Pessoa Física"), 
