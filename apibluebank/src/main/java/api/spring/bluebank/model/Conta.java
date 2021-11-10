@@ -26,11 +26,19 @@ public class Conta {
 	
 	//enum tipo de conta
 
+	public Conta(int agencia, String conta) {
+		super();
+		this.agencia = agencia;
+		this.conta = conta;
+	}
 
+	
 	public int getAgencia() {
 		return agencia;
 	}
 
+
+	
 
 	public void setAgencia(int agencia) {
 		this.agencia = agencia;
@@ -60,6 +68,29 @@ public class Conta {
 	@Override
 	public String toString() {
 		return "Conta [agencia=" + agencia + ", conta=" + conta + ", saldo=" + saldo + "]";
+	}
+	
+	public void deposita(double valor) {
+		this.saldo += valor;
+	}
+	
+	public boolean saca(double valor) {
+		if(this.saldo >= valor) {
+			this.saldo -= valor;
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public boolean tranfere(double valor, Conta destino) {
+		if(this.saldo >= valor) {
+			this.saldo -= valor;
+			destino.deposita(valor);
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	

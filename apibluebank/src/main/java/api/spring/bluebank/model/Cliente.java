@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
-
+import org.hibernate.validator.constraints.UniqueElements;
 import org.hibernate.validator.constraints.br.CPF;
 
 /**
@@ -39,13 +39,16 @@ public class Cliente {
 	@Column(name = "email", nullable = false, unique = true, length = 60)
 	@Email
 	private String email;
-	
+
 	//@Column(name = "telefone", nullable = true, unique = true, length = 11)
 	private int telefone;
 	
 	//@Column(name = "dataNascimento", nullable = false)
 	private Date data_nascimento;
 	
+
+	private String senha;
+
 	@CPF(message = "Cpf Invalido")
 	@Column(unique=true, nullable = false )
 	private String cpf;
@@ -59,8 +62,6 @@ public class Cliente {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
-	}
-
 	public Long getId() {
 		return id;
 	}
@@ -110,8 +111,13 @@ public class Cliente {
 	public void setData_nascimento(Date data_nascimento) {
 		this.data_nascimento = data_nascimento;
 	}
-	
-	
-	
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
 	
 }
