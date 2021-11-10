@@ -18,12 +18,13 @@ public class Conta {
 	@NotNull
 	private String conta;
 	
-	@NotNull
-	private char digito;
-	
-	
 	private double saldo;
-
+	
+	//private Cliente titular;
+	
+	private static int total; //esse atributo serve para sabermos quantas contas foram abertas
+	
+	//enum tipo de conta
 
 
 	public int getAgencia() {
@@ -46,16 +47,6 @@ public class Conta {
 	}
 
 
-	public char getDigito() {
-		return digito;
-	}
-
-
-	public void setDigito(char digito) {
-		this.digito = digito;
-	}
-
-
 	public double getSaldo() {
 		return saldo;
 	}
@@ -64,9 +55,12 @@ public class Conta {
 	public void setSaldo(double saldo) {
 		this.saldo = saldo;
 	}
-	
-	
-	//enum tipo de conta
+
+
+	@Override
+	public String toString() {
+		return "Conta [agencia=" + agencia + ", conta=" + conta + ", saldo=" + saldo + "]";
+	}
 	
 	
 }

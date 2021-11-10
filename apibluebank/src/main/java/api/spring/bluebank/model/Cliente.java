@@ -2,6 +2,7 @@ package api.spring.bluebank.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,34 +11,68 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.br.CPF;
+
+/**
+ * 
+ * @author hanely
+ *cadastro de cliente
+ *listagem de cliente
+ *atualização de cliente
+ *deletar clientes
+ *historico de transações entre contas
+ */
 @Entity
-@Table(name="pessoa")
-public class Usuario {
+@Table(name="cliente")
+public class Cliente {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotNull
+	@Column(name = "nome", nullable = false, length = 60)
 	private String nome;
 	
-	@NotNull
+	@Column(name = "sobrenome", nullable = false, length = 60)
 	private String sobrenome;
 	
-	@NotNull
+	@Column(name = "email", nullable = false, unique = true, length = 60)
 	@Email
 	private String email;
 	
-	private String endereco;
+	//@Column(name = "telefone", nullable = true, unique = true, length = 11)
+	private int telefone;
 	
+	//@Column(name = "dataNascimento", nullable = false)
 	private Date data_nascimento;
+	
+	@CPF(message = "Cpf Invalido")
+	@Column(unique=true, nullable = false )
+	private String cpf;
 	
 	//enum tipo pessoa
 	
+	
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
 
 	public Long getId() {
 		return id;
 	}
+
+	public int getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(int telefone) {
+		this.telefone = telefone;
+	}
+
 
 	public void setId(Long id) {
 		this.id = id;
@@ -67,13 +102,6 @@ public class Usuario {
 		this.email = email;
 	}
 
-	public String getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
-	}
 
 	public Date getData_nascimento() {
 		return data_nascimento;

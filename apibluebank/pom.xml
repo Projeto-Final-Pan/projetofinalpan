@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.bluebank</groupId>
-	<artifactId>api-spring-docker</artifactId>
+	<artifactId>api-spring-aws</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>apibluebank</name>
-	<description>API Spring Docker</description>
+	<description>API Spring Aws</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
