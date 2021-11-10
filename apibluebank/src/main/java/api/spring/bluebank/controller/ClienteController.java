@@ -3,6 +3,7 @@ package api.spring.bluebank.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -36,6 +37,7 @@ import api.spring.bluebank.service.ClienteService;
  * criar metodo deposito
  * criar metodo de saque
  * criar metodo de transferencia
+ */
 
 
 
@@ -58,18 +60,17 @@ public class ClienteController {
 	public ResponseEntity<Cliente> cadastrarCliente(@RequestBody Cliente novocliente) {
 		return service.cadastrarCliente(novocliente);
 
-
 	}
 
 	@PutMapping("/id/{id}")
 	public Optional<Cliente> alterarEmail(@PathVariable(value = "id") Long id,
 			@RequestBody Cliente clienteParaAtualizar) {
-		return service.alterarEmail(id, clienteParaAtualizar);
 
+		return service.alterarEmail(id, clienteParaAtualizar);
 	}
 
 	@DeleteMapping("/id/{id}")
 	public void deletar(@PathVariable Long id) {
-		repository.deleteById(id);
+	repository.deleteById(id);
 	}
 }

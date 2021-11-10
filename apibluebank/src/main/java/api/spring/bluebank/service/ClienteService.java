@@ -1,6 +1,5 @@
 package api.spring.bluebank.service;
 
-
 public class ClienteService {
 import java.util.List;
 import java.util.Optional;
@@ -18,9 +17,10 @@ public class ClienteService {
 	private @Autowired ClienteRepository repository;
 	
 	public ResponseEntity<Cliente> cadastrarCliente(Cliente novocliente) {
-		List<Cliente> clienteExistente = repository.findAllById(novocliente.getId());
-		if (clienteExistente.isEmpty()) {
-			return ResponseEntity.status(201).body(repository.save(novocliente));
+		List<Cliente> clienteExistente = cRepository.findAllById(novocliente.getId());
+		List<Cliente> validaCPF = cRepository.findByCpf(novocliente.getCpf());
+		if (clienteExistente.isEmpty() && findByCpf.isEmpty()) {
+			return ResponseEntity.status(201).body(cRepository.save(novocliente));
 		} else {
 			return ResponseEntity.badRequest().build();
 		}
@@ -35,6 +35,5 @@ public class ClienteService {
 		}).orElseGet(() -> {
 			return Optional.empty();
 		});
-
 	}
-}
+

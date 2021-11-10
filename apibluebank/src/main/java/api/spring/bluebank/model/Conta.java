@@ -20,7 +20,6 @@ public class Conta {
 	
 	private double saldo;
 	
-	
 	//private Cliente titular;
 	
 	private static int total; //esse atributo serve para sabermos quantas contas foram abertas

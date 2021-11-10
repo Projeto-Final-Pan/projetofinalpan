@@ -30,7 +30,6 @@ public class Cliente {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-
 	@Column(name = "nome", nullable = false, length = 60)
 	private String nome;
 	
@@ -40,23 +39,6 @@ public class Cliente {
 	@Column(name = "email", nullable = false, unique = true, length = 60)
 	@Email
 	private String email;
-	
-	@CPF//(message = "Cpf Invalido")
-	//@UniqueElements
-	@Column(unique = true, nullable = false)
-	private String cpf;
-	
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-
-	//@Column(name = "telefone", nullable = true, unique = true, length = 11)
-	private int telefone;
-	
 
 	//@Column(name = "telefone", nullable = true, unique = true, length = 11)
 	private int telefone;
@@ -64,11 +46,22 @@ public class Cliente {
 	//@Column(name = "dataNascimento", nullable = false)
 	private Date data_nascimento;
 	
+
 	private String senha;
+
+	@CPF(message = "Cpf Invalido")
+	@Column(unique=true, nullable = false )
+	private String cpf;
 	
 	//enum tipo pessoa
 	
 	
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	public Long getId() {
 		return id;
 	}
@@ -126,8 +119,5 @@ public class Cliente {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
-	
-	
 	
 }
