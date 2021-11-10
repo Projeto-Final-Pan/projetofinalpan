@@ -56,7 +56,8 @@ public class ClienteController {
 	@PostMapping("/cadastrar")
 	public ResponseEntity<Cliente> cadastrarCliente(@RequestBody Cliente novocliente) {
 		List<Cliente> clienteExistente = cRepository.findAllById(novocliente.getId());
-		if (clienteExistente.isEmpty()) {
+		List<Cliente> validarCPF = cRepository.findCPF(novocliente.getCpf());
+		if (clienteExistente.isEmpty() && validarCPF.isEmpty()) {
 			return ResponseEntity.status(201).body(cRepository.save(novocliente));
 		} else {
 			return ResponseEntity.badRequest().build();

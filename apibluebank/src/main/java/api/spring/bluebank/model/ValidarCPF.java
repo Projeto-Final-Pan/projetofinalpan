@@ -5,6 +5,13 @@ import javax.persistence.Table;
 
 //@Entity
 //@Table(name="documento")
-public class Documento {
+public class ValidarCPF {
+	Cliente cliente = new Cliente();
 	
+	public void cpfValido() {
+		String cpf = cliente.getCpf();
+		
+		
+		
+	}
 }
